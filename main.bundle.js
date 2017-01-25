@@ -74,6 +74,8 @@
 	  }
 	});
 
+	foodDelete.addEventListener('click', function () {});
+
 	function flash(message) {
 	  $("#alert-message").remove();
 	  $('.alert').prepend('<div id="alert-message">' + message + '</div>');
@@ -92,13 +94,14 @@
 	}
 
 	function submitFood(food, calories) {
-	  var newRow = document.createElement('tr');
+	  var newRow = document.createElement("tr");
+	  newRow.setAttribute("id", food);
 	  var nameCell = document.createElement('td');
 	  nameCell.innerText = food;
 	  var calorieCell = document.createElement('td');
 	  calorieCell.innerText = calories;
 	  var deleteCell = document.createElement('td');
-	  deleteCell.innerHTML = "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>";
+	  deleteCell.innerHTML = "<span class='glyphicon glyphicon-trash' aria-hidden='true', id=food></span>";
 	  newRow.appendChild(nameCell);
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
