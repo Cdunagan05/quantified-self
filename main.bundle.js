@@ -95,6 +95,7 @@
 	  var calorieCell = document.createElement('td');
 	  calorieCell.innerText = calories;
 	  var deleteCell = document.createElement('td');
+	  deleteCell.innerHTML = "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>";
 	  newRow.appendChild(nameCell);
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
