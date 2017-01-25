@@ -78,15 +78,20 @@
 	  $('#alert-message').delay(1250).fadeOut();
 	}
 
-	// function storeFood(food, calories) {
-	//
-	//   var foodsJSON = localStorage.getItem('name-field');
-	//   var caloriesJSON = localStorage.getItem('calorie-field');
-	//   if ((foodsJSON === null) || (caloriesJSON === null)){
-	//
-	//   }
-	// }
+	function storeFood(food, calories) {
 
+	  var foodsJSON = localStorage.getItem('all-foods-table');
+	  if (foodsJSON === null) {
+	    foodsJSON = '[]';
+	  }
+
+	  var currentFoods = JSON.parse(foodsJSON);
+
+	  currentFoods.push({ food: food, calories: calories });
+
+	  foodsJSON = JSON.stringify(currentFoods);
+	  localStorage.setItem('all-foods-table', foodsJSON);
+	}
 
 	function submitFood(food, calories) {
 	  var newRow = document.createElement('tr');
@@ -100,6 +105,7 @@
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
 	  allFoods.appendChild(newRow);
+	  storeFood(food, calories);
 	};
 
 /***/ }
