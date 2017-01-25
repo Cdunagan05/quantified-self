@@ -69,6 +69,7 @@
 	    flash("Please enter a calorie amount");
 	  } else {
 	    submitFood(food, calories);
+	    storeFood(food, calories);
 	  }
 	});
 
@@ -79,16 +80,12 @@
 	}
 
 	function storeFood(food, calories) {
-
 	  var foodsJSON = localStorage.getItem('all-foods-table');
 	  if (foodsJSON === null) {
 	    foodsJSON = '[]';
 	  }
-
 	  var currentFoods = JSON.parse(foodsJSON);
-
 	  currentFoods.push({ food: food, calories: calories });
-
 	  foodsJSON = JSON.stringify(currentFoods);
 	  localStorage.setItem('all-foods-table', foodsJSON);
 	}
@@ -105,8 +102,15 @@
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
 	  allFoods.appendChild(newRow);
-	  storeFood(food, calories);
 	};
+
+	function displayFoods() {
+	  JSON.parse(localStorage.getItem('all-foods-table')).forEach(function (element) {
+	    submitFood(element.food, element.calories);
+	  });
+	}
+
+	displayFoods();
 
 /***/ }
 /******/ ]);
