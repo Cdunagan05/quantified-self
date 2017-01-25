@@ -60,6 +60,7 @@
 	var allFoods = document.getElementById("all-foods-table");
 	var alertBox = document.getElementById("alert-message");
 	var holdFoods = document.getElementById("hold-foods-table");
+	var foodCount = 0;
 
 	foodSubmit.addEventListener('click', function () {
 	  var food = foodName.value;
@@ -95,17 +96,19 @@
 
 	function submitFood(food, calories) {
 	  var newRow = document.createElement("tr");
-	  newRow.setAttribute("id", food);
+	  newRow.setAttribute("id", foodCount);
 	  var nameCell = document.createElement('td');
 	  nameCell.innerText = food;
 	  var calorieCell = document.createElement('td');
 	  calorieCell.innerText = calories;
 	  var deleteCell = document.createElement('td');
-	  deleteCell.innerHTML = "<span class='glyphicon glyphicon-trash' aria-hidden='true', id=food></span>";
+	  deleteCell.setAttribute("id", foodCount);
+	  deleteCell.innerHTML = "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>";
 	  newRow.appendChild(nameCell);
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
 	  holdFoods.insertBefore(newRow, holdFoods.firstChild);
+	  foodCount++;
 	};
 
 	function displayFoods() {
