@@ -59,6 +59,7 @@
 	var calorieNumber = document.getElementById('calorie-field');
 	var allFoods = document.getElementById("all-foods-table");
 	var alertBox = document.getElementById("alert-message");
+	var holdFoods = document.getElementById("hold-foods-table");
 
 	foodSubmit.addEventListener('click', function () {
 	  var food = foodName.value;
@@ -101,7 +102,7 @@
 	  newRow.appendChild(nameCell);
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
-	  allFoods.appendChild(newRow);
+	  holdFoods.insertBefore(newRow, holdFoods.firstChild);
 	};
 
 	function displayFoods() {
