@@ -63,10 +63,10 @@
 	foodSubmit.addEventListener('click', function () {
 	  var food = foodName.value;
 	  var calories = calorieNumber.value;
-	  if (food === "p") {
+	  if (food === '' || calories === '') {
 	    // var notEnteredMessage = document.createElement("h4");
-	    // throw new Error("Please Enter a food name");
-	    console.log("Hello, this is working");
+	    throw new Error("Please Enter a food name");
+	    // console.log("Hello, this is working");
 	  } else {
 	    submitFood(food, calories);
 	  }
