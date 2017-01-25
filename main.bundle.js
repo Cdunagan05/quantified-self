@@ -98,7 +98,7 @@
 	  var currentFoods = JSON.parse(foodsJSON);
 	  currentFoods.push({ food: food, calories: calories });
 	  foodsJSON = JSON.stringify(currentFoods);
-	  localStorage.setItem('all-foods-table', foodsJSON);
+	  localStorage.setItem('hold-foods-table', foodsJSON);
 	}
 
 	function submitFood(food, calories) {
