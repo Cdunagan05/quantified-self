@@ -55,6 +55,7 @@
 	// require('bootstrap')
 
 	var foodSubmit = document.getElementById('food-submit');
+	var foodDelete = document.getElementById('food-delete');
 	var foodName = document.getElementById('name-field');
 	var calorieNumber = document.getElementById('calorie-field');
 	var allFoods = document.getElementById("all-foods-table");
@@ -75,7 +76,13 @@
 	  }
 	});
 
-	foodDelete.addEventListener('click', function () {});
+	foodDelete.addEventListener('click', function () {
+	  var deleteRow = function (rowId) {
+	    var elem = document.getElementById(rowId);
+	    holdFoods.remove(elem);
+	  };
+	  deleteRow(1);
+	});
 
 	function flash(message) {
 	  $("#alert-message").remove();
@@ -103,7 +110,7 @@
 	  calorieCell.innerText = calories;
 	  var deleteCell = document.createElement('td');
 	  deleteCell.setAttribute("id", foodCount);
-	  deleteCell.innerHTML = "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>";
+	  deleteCell.innerHTML = "<button id='food-delete'>Delete</button>";
 	  newRow.appendChild(nameCell);
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
@@ -112,7 +119,7 @@
 	};
 
 	function displayFoods() {
-	  JSON.parse(localStorage.getItem('all-foods-table')).forEach(function (element) {
+	  JSON.parse(localStorage.getItem('hold-foods-table')).forEach(function (element) {
 	    submitFood(element.food, element.calories);
 	  });
 	}
