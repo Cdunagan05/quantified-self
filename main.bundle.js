@@ -72,13 +72,20 @@
 	    flash("Please enter a calorie amount");
 	  } else {
 	    submitFood(food, calories);
-	    storeFood(food, calories);
+	    storeFood(food, calories, foodCount);
 	  }
 	});
 
 	$(document).ready(function () {
 	  $(".delete-food-button").click(function () {
-	    $(this).parent().parent().remove();
+	    var toBeDeleted = $(this).parent().parent();
+	    var storageId = toBeDeleted[0].id[0]++ + 1;
+	    var foodStorage = localStorage["hold-foods-table"];
+	    var foodStorageParsed = JSON.parse(foodStorage);
+	    delete foodStorageParsed[storageId.toString()];
+	    var updatedStorage = JSON.stringify(foodStorageParsed);
+	    localStorage.setItem('hold-foods-table', updatedStorage);
+	    toBeDeleted.remove();
 	  });
 	});
 
@@ -88,13 +95,13 @@
 	  $('#alert-message').delay(1250).fadeOut();
 	}
 
-	function storeFood(food, calories) {
+	function storeFood(food, calories, counter) {
 	  var foodsJSON = localStorage.getItem('hold-foods-table');
 	  if (foodsJSON === null) {
-	    foodsJSON = '[]';
+	    foodsJSON = '{}';
 	  }
 	  var currentFoods = JSON.parse(foodsJSON);
-	  currentFoods.push({ food: food, calories: calories });
+	  currentFoods[counter] = { food: food, calories: calories };
 	  foodsJSON = JSON.stringify(currentFoods);
 	  localStorage.setItem('hold-foods-table', foodsJSON);
 	}
@@ -117,7 +124,8 @@
 	};
 
 	function displayFoods() {
-	  JSON.parse(localStorage.getItem('hold-foods-table')).forEach(function (element) {
+	  var foodsHash = JSON.parse(localStorage.getItem('hold-foods-table'));
+	  Object.values(foodsHash).forEach(function (element) {
 	    submitFood(element.food, element.calories);
 	  });
 	}
