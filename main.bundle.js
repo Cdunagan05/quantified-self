@@ -110,7 +110,7 @@
 	  calorieCell.innerText = calories;
 	  var deleteCell = document.createElement('td');
 	  deleteCell.setAttribute("id", foodCount + "-" + food);
-	  deleteCell.innerHTML = "<button id='food-delete'>Delete</button>";
+	  deleteCell.innerHTML = "<button class='btn btn-default delete-food-button', id='food-delete'>Delete</button>";
 	  newRow.appendChild(nameCell);
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
