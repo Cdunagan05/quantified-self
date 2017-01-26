@@ -76,13 +76,11 @@
 	  }
 	});
 
-	// foodDelete.addEventListener('click', function(){
-	//   var deleteRow = function(rowId) {
-	//     var elem = document.getElementById(rowId);
-	//     allFoods.remove(elem);
-	//   }
-	//   deleteRow(1);
-	// });
+	$(document).ready(function () {
+	  $(".delete-food-button").click(function () {
+	    $(this).parent().parent().remove();
+	  });
+	});
 
 	function flash(message) {
 	  $("#alert-message").remove();
@@ -110,7 +108,7 @@
 	  calorieCell.innerText = calories;
 	  var deleteCell = document.createElement('td');
 	  deleteCell.setAttribute("id", foodCount + "-" + food);
-	  deleteCell.innerHTML = "<button class='btn btn-default delete-food-button', id='food-delete'>Delete</button>";
+	  deleteCell.innerHTML = "<button class='btn btn-default delete-food-button'>Delete</button>";
 	  newRow.appendChild(nameCell);
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
