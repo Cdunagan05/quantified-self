@@ -44,8 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Food = __webpack_require__(1);
-	var Exercise = __webpack_require__(15);
+	var Exercise = __webpack_require__(1);
+	var Food = __webpack_require__(15);
 
 /***/ },
 /* 1 */
@@ -53,37 +53,37 @@
 
 	__webpack_require__(2);
 
-	var foodSubmit = document.getElementById('food-submit');
-	var foodDelete = document.getElementById('food-delete');
-	var foodName = document.getElementById('name-field');
-	var calorieNumber = document.getElementById('calorie-field');
-	var allFoods = document.getElementById("all-foods-table");
-	var alertBox = document.getElementById("alert-message");
-	var holdFoods = document.getElementById("hold-foods-table");
-	var foodCount = 0;
+	var exerciseSubmit = document.getElementById('exercise-submit');
+	var exerciseDelete = document.getElementById('exercise-delete');
+	var exerciseName = document.getElementById('exercise-field');
+	var calorieNumber = document.getElementById('exercise-calorie-field');
+	var allExercises = document.getElementById('all-exercises-table');
+	var alertBox = document.getElementById('alert-message');
+	var holdExercises = document.getElementById('hold-exercises-table');
+	var exerciseCount = 0;
 
-	foodSubmit.addEventListener('click', function () {
-	  var food = foodName.value;
+	exerciseSubmit.addEventListener('click', function () {
+	  var exercise = exerciseName.value;
 	  var calories = calorieNumber.value;
-	  if (food === '') {
-	    flash("Please enter a food name");
+	  if (exercise === '') {
+	    flash("Please enter an exercise name");
 	  } else if (calories === '') {
 	    flash("Please enter a calorie amount");
 	  } else {
-	    submitFood(food, calories);
-	    storeFood(food, calories, foodCount);
+	    submitExercise(exercise, calories);
+	    storeExercise(exercise, calories, exerciseCount);
 	  }
 	});
 
 	$(document).ready(function () {
-	  $(".delete-food-button").click(function () {
+	  $(".delete-exercise-button").click(function () {
 	    var toBeDeleted = $(this).parent().parent();
 	    var storageId = toBeDeleted[0].id[0]++ + 1;
-	    var foodStorage = localStorage["hold-foods-table"];
-	    var foodStorageParsed = JSON.parse(foodStorage);
-	    delete foodStorageParsed[storageId.toString()];
-	    var updatedStorage = JSON.stringify(foodStorageParsed);
-	    localStorage.setItem('hold-foods-table', updatedStorage);
+	    var exerciseStorage = localStorage["hold-exercises-table"];
+	    var exerciseStorageParsed = JSON.parse(exerciseStorage);
+	    delete exerciseStorageParsed[storageId.toString()];
+	    var updatedStorage = JSON.stringify(exerciseStorageParsed);
+	    localStorage.setItem('hold-exercises-table', updatedStorage);
 	    toBeDeleted.remove();
 	  });
 	});
@@ -94,42 +94,42 @@
 	  $('#alert-message').delay(1250).fadeOut();
 	}
 
-	function storeFood(food, calories, counter) {
-	  var foodsJSON = localStorage.getItem('hold-foods-table');
-	  if (foodsJSON === null) {
-	    foodsJSON = '{}';
+	function storeExercise(exercise, calories, counter) {
+	  var exercisesJSON = localStorage.getItem('hold-exercises-table');
+	  if (exercisesJSON === null) {
+	    exercisesJSON = '{}';
 	  }
-	  var currentFoods = JSON.parse(foodsJSON);
-	  currentFoods[counter] = { food: food, calories: calories };
-	  foodsJSON = JSON.stringify(currentFoods);
-	  localStorage.setItem('hold-foods-table', foodsJSON);
+	  var currentExercises = JSON.parse(exercisesJSON);
+	  currentExercises[counter] = { exercise: exercise, calories: calories };
+	  exercisesJSON = JSON.stringify(currentExercises);
+	  localStorage.setItem('hold-exercises-table', exercisesJSON);
 	}
 
-	function submitFood(food, calories) {
+	function submitExercise(exercise, calories) {
 	  var newRow = document.createElement("tr");
-	  newRow.setAttribute("id", foodCount + "-" + food);
+	  newRow.setAttribute("id", exerciseCount + "-" + exercise);
 	  var nameCell = document.createElement('td');
-	  nameCell.innerText = food;
+	  nameCell.innerText = exercise;
 	  var calorieCell = document.createElement('td');
 	  calorieCell.innerText = calories;
 	  var deleteCell = document.createElement('td');
-	  deleteCell.setAttribute("id", foodCount + "-" + food);
-	  deleteCell.innerHTML = "<button class='btn btn-default delete-food-button'>Delete</button>";
+	  deleteCell.setAttribute("id", exerciseCount + "-" + exercise);
+	  deleteCell.innerHTML = "<button class='btn btn-default delete-exercise-button'>Delete</button>";
 	  newRow.appendChild(nameCell);
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
-	  holdFoods.insertBefore(newRow, holdFoods.firstChild);
-	  foodCount++;
+	  holdExercises.insertBefore(newRow, holdExercises.firstChild);
+	  exerciseCount++;
 	};
 
-	function displayFoods() {
-	  var foodsHash = JSON.parse(localStorage.getItem('hold-foods-table'));
-	  Object.values(foodsHash).forEach(function (element) {
-	    submitFood(element.food, element.calories);
+	function displayExercises() {
+	  var exercisesHash = JSON.parse(localStorage.getItem('hold-exercises-table'));
+	  Object.values(exercisesHash).forEach(function (element) {
+	    submitExercise(element.exercise, element.calories);
 	  });
 	}
 
-	displayFoods();
+	displayExercises();
 
 /***/ },
 /* 2 */
@@ -2575,37 +2575,37 @@
 
 	__webpack_require__(2);
 
-	var exerciseSubmit = document.getElementById('exercise-submit');
-	var exerciseDelete = document.getElementById('exercise-delete');
-	var exerciseName = document.getElementById('name-field');
+	var foodSubmit = document.getElementById('food-submit');
+	var foodDelete = document.getElementById('food-delete');
+	var foodName = document.getElementById('name-field');
 	var calorieNumber = document.getElementById('calorie-field');
-	var allExercises = document.getElementById("all-exercises-table");
+	var allFoods = document.getElementById("all-foods-table");
 	var alertBox = document.getElementById("alert-message");
-	var holdExercises = document.getElementById("hold-exercises-table");
-	var exerciseCount = 0;
+	var holdFoods = document.getElementById("hold-foods-table");
+	var foodCount = 0;
 
-	exerciseSubmit.addEventListener('click', function () {
-	  var exercise = exerciseName.value;
+	foodSubmit.addEventListener('click', function () {
+	  var food = foodName.value;
 	  var calories = calorieNumber.value;
-	  if (exercise === '') {
-	    flash("Please enter a exercise name");
+	  if (food === '') {
+	    flash("Please enter a food name");
 	  } else if (calories === '') {
 	    flash("Please enter a calorie amount");
 	  } else {
-	    submitExercise(exercise, calories);
-	    storeExercise(exercise, calories, exerciseCount);
+	    submitFood(food, calories);
+	    storeFood(food, calories, foodCount);
 	  }
 	});
 
 	$(document).ready(function () {
-	  $(".delete-exercise-button").click(function () {
+	  $(".delete-food-button").click(function () {
 	    var toBeDeleted = $(this).parent().parent();
 	    var storageId = toBeDeleted[0].id[0]++ + 1;
-	    var exerciseStorage = localStorage["hold-exercises-table"];
-	    var exerciseStorageParsed = JSON.parse(exerciseStorage);
-	    delete exerciseStorageParsed[storageId.toString()];
-	    var updatedStorage = JSON.stringify(exerciseStorageParsed);
-	    localStorage.setItem('hold-exercises-table', updatedStorage);
+	    var foodStorage = localStorage["hold-foods-table"];
+	    var foodStorageParsed = JSON.parse(foodStorage);
+	    delete foodStorageParsed[storageId.toString()];
+	    var updatedStorage = JSON.stringify(foodStorageParsed);
+	    localStorage.setItem('hold-foods-table', updatedStorage);
 	    toBeDeleted.remove();
 	  });
 	});
@@ -2616,42 +2616,42 @@
 	  $('#alert-message').delay(1250).fadeOut();
 	}
 
-	function storeExercise(exercise, calories, counter) {
-	  var exercisesJSON = localStorage.getItem('hold-exercises-table');
-	  if (exercisesJSON === null) {
-	    exercisesJSON = '{}';
+	function storeFood(food, calories, counter) {
+	  var foodsJSON = localStorage.getItem('hold-foods-table');
+	  if (foodsJSON === null) {
+	    foodsJSON = '{}';
 	  }
-	  var currentExercises = JSON.parse(exercisesJSON);
-	  currentExercises[counter] = { exercise: exercise, calories: calories };
-	  exercisesJSON = JSON.stringify(currentExercises);
-	  localStorage.setItem('hold-exercises-table', exercisesJSON);
+	  var currentFoods = JSON.parse(foodsJSON);
+	  currentFoods[counter] = { food: food, calories: calories };
+	  foodsJSON = JSON.stringify(currentFoods);
+	  localStorage.setItem('hold-foods-table', foodsJSON);
 	}
 
-	function submitExercise(exercise, calories) {
+	function submitFood(food, calories) {
 	  var newRow = document.createElement("tr");
-	  newRow.setAttribute("id", exerciseCount + "-" + exercise);
+	  newRow.setAttribute("id", foodCount + "-" + food);
 	  var nameCell = document.createElement('td');
-	  nameCell.innerText = exercise;
+	  nameCell.innerText = food;
 	  var calorieCell = document.createElement('td');
 	  calorieCell.innerText = calories;
 	  var deleteCell = document.createElement('td');
-	  deleteCell.setAttribute("id", exerciseCount + "-" + exercise);
-	  deleteCell.innerHTML = "<button class='btn btn-default delete-exercise-button'>Delete</button>";
+	  deleteCell.setAttribute("id", foodCount + "-" + food);
+	  deleteCell.innerHTML = "<button class='btn btn-default delete-food-button'>Delete</button>";
 	  newRow.appendChild(nameCell);
 	  newRow.appendChild(calorieCell);
 	  newRow.appendChild(deleteCell);
-	  holdExercises.insertBefore(newRow, holdExercises.firstChild);
-	  exerciseCount++;
+	  holdFoods.insertBefore(newRow, holdFoods.firstChild);
+	  foodCount++;
 	};
 
-	function displayExercises() {
-	  var exercisesHash = JSON.parse(localStorage.getItem('hold-exercises-table'));
-	  Object.values(exercisesHash).forEach(function (element) {
-	    submitExercise(element.food, element.calories);
+	function displayFoods() {
+	  var foodsHash = JSON.parse(localStorage.getItem('hold-foods-table'));
+	  Object.values(foodsHash).forEach(function (element) {
+	    submitFood(element.food, element.calories);
 	  });
 	}
 
-	displayExercises();
+	displayFoods();
 
 /***/ }
 /******/ ]);
