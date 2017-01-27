@@ -56,6 +56,7 @@
 	var exerciseCount = 0;
 
 	$(document).ready(function () {
+
 	  var exerciseSubmit = document.getElementById('exercise-submit');
 	  var exerciseDelete = document.getElementById('exercise-delete');
 	  var exerciseName = document.getElementById('exercise-field');
@@ -76,6 +77,7 @@
 	      storeExercise(exercise, calories, exerciseCount);
 	    }
 	  });
+
 	  function submitExercise(exercise, calories) {
 	    var newRow = document.createElement("tr");
 	    newRow.setAttribute("id", exerciseCount + "-" + exercise);
@@ -92,6 +94,7 @@
 	    holdExercises.insertBefore(newRow, holdExercises.firstChild);
 	    exerciseCount++;
 	  };
+
 	  function displayExercises() {
 	    var exercisesHash = JSON.parse(localStorage.getItem('hold-exercises-table'));
 	    Object.values(exercisesHash).forEach(function (element) {
@@ -2596,6 +2599,7 @@
 	      storeFood(food, calories, foodCount);
 	    }
 	  });
+
 	  function submitFood(food, calories) {
 	    var newRow = document.createElement("tr");
 	    newRow.setAttribute("id", foodCount + "-" + food);
@@ -2612,6 +2616,7 @@
 	    holdFoods.insertBefore(newRow, holdFoods.firstChild);
 	    foodCount++;
 	  };
+
 	  function displayFoods() {
 	    var foodsHash = JSON.parse(localStorage.getItem('hold-foods-table'));
 	    Object.values(foodsHash).forEach(function (element) {
