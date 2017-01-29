@@ -2,7 +2,7 @@ var assert    = require('chai').assert;
 var webdriver = require('selenium-webdriver');
 var test      = require('selenium-webdriver/testing');
 
-test.describe("user sees food on foods.html", function(){
+test.describe("user sees exercise on exercises.html", function(){
   var driver;
   this.timeout(10000);
 
@@ -13,36 +13,36 @@ test.describe("user sees food on foods.html", function(){
   });
 
   test.afterEach(function() {
-    driver.get('http://localhost:8080/foods.html');
+    driver.get('http://localhost:8080/exercises.html');
     driver.executeScript('window.localStorage.clear()');
     driver.quit();
   });
 
-  test.it("user can see submitted food on foods.html", function() {
-    driver.get("http://localhost:8080/foods.html");
+  test.it("user can see submitted exercise on exercises.html", function() {
+    driver.get("http://localhost:8080/exercises.html");
 
-    var name = driver.findElement({id: 'name-field'});
-    var calories = driver.findElement({id: 'calorie-field'});
-    var submitButton = driver.findElement({id: 'food-submit'});
+    var name = driver.findElement({id: 'exercise-field'});
+    var calories = driver.findElement({id: 'exercise-calorie-field'});
+    var submitButton = driver.findElement({id: 'exercise-submit'});
 
-    name.sendKeys('Chicken');
+    name.sendKeys('Jump');
     name.getAttribute('value').then(function(value) {
-      assert.equal(value, "Chicken");
+      assert.equal(value, "Jump");
     });
 
-    calories.sendKeys('900');
+    calories.sendKeys('14');
     calories.getAttribute('value').then(function(value) {
-      assert.equal(value, '900');
+      assert.equal(value, '14');
     });
 
     submitButton.click();
 
     driver.findElement({css: 'table td'}).getText().then(function(textValue) {
-      assert.include(textValue, 'Chicken');
+      assert.include(textValue, 'Jump');
     });
 
     driver.findElement({css: 'table td:nth-child(2)'}).getText().then(function(textValue) {
-      assert.include(textValue, '900');
+      assert.include(textValue, '14');
     });
   });
 });
