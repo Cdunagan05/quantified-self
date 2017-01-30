@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Exercise = __webpack_require__(1);
-	var Food = __webpack_require__(15);
+	__webpack_require__(15);
 
 /***/ },
 /* 1 */
@@ -64,6 +64,23 @@
 	  var allExercises = document.getElementById('all-exercises-table');
 	  var alertBox = document.getElementById('alert-message');
 	  var holdExercises = document.getElementById('hold-exercises-table');
+	  var inputExercise = document.getElementById("myInput");
+
+	  inputExercise.addEventListener('keyup', function () {
+	    var filter = inputExercise.value.toUpperCase();
+	    var tr = holdExercises.getElementsByTagName("tr");
+
+	    for (i = 0; i < tr.length; i++) {
+	      td = tr[i].getElementsByTagName("td")[0];
+	      if (td) {
+	        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	          tr[i].style.display = "";
+	        } else {
+	          tr[i].style.display = "none";
+	        }
+	      }
+	    }
+	  });
 
 	  exerciseSubmit.addEventListener('click', function () {
 	    var exercise = exerciseName.value;
@@ -2586,6 +2603,23 @@
 	  var allFoods = document.getElementById("all-foods-table");
 	  var alertBox = document.getElementById("alert-message");
 	  var holdFoods = document.getElementById("hold-foods-table");
+	  var inputFood = document.getElementById("myInput");
+
+	  inputFood.addEventListener('keyup', function () {
+	    var filter = inputFood.value.toUpperCase();
+	    var tr = holdFoods.getElementsByTagName("tr");
+
+	    for (i = 0; i < tr.length; i++) {
+	      td = tr[i].getElementsByTagName("td")[0];
+	      if (td) {
+	        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	          tr[i].style.display = "";
+	        } else {
+	          tr[i].style.display = "none";
+	        }
+	      }
+	    }
+	  });
 
 	  foodSubmit.addEventListener('click', function () {
 	    var food = foodName.value;
