@@ -58,7 +58,17 @@
 	    }
 	  };
 
+	  var holdExercises = document.getElementById("exercises-table");
+	  var exercises = JSON.parse(localStorage.getItem("hold-exercises-table"));
+
+	  function setExercises() {
+	    for (var i = 1; i <= Object.keys(exercises).length; i++) {
+	      holdExercises.innerHTML += "<tr><td>" + exercises[i].exercise + "</td><td>" + exercises[i].calories + "</td></tr>";
+	    }
+	  }
+
 	  setFood();
+	  setExercises();
 	});
 
 /***/ },
