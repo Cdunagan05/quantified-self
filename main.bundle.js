@@ -83,8 +83,12 @@
 	    newRow.setAttribute("id", exerciseCount + "-" + exercise);
 	    var nameCell = document.createElement('td');
 	    nameCell.innerText = exercise;
+	    nameCell.setAttribute("id", exerciseCount + 1);
+	    nameCell.setAttribute("class", "exercise-name-cell");
 	    var calorieCell = document.createElement('td');
 	    calorieCell.innerText = calories;
+	    calorieCell.setAttribute("id", exerciseCount + 1);
+	    calorieCell.setAttribute("class", "exercise-calorie-cell");
 	    var deleteCell = document.createElement('td');
 	    deleteCell.setAttribute("id", exerciseCount + "-" + exercise);
 	    deleteCell.innerHTML = "<button class='btn btn-default delete-exercise-button'>Delete</button>";
@@ -131,6 +135,32 @@
 	  exercisesJSON = JSON.stringify(currentExercises);
 	  localStorage.setItem('hold-exercises-table', exercisesJSON);
 	}
+
+	$(function () {
+
+	  var $td = $("td");
+
+	  $td.on({
+	    "dblclick": function () {
+	      $td.not(this).prop("contenteditable", false);
+	      $(this).prop("contenteditable", true);
+	    },
+	    "blur": function () {
+	      var newText = this.textContent;
+	      var storage = JSON.parse(localStorage["hold-exercises-table"]);
+	      var exerciseToEdit = storage[this.id];
+	      if (this.classList[0] === "exercise-name-cell") {
+	        exerciseToEdit["exercise"] = newText;
+	      } else if (this.classList[0] === "exercise-calorie-cell") {
+	        exerciseToEdit["calories"] = newText;
+	      } else {
+	        flash("An error occurred. Please try again.");
+	      };
+	      var newStorage = JSON.stringify(storage);
+	      localStorage.setItem("hold-exercises-table", newStorage);
+	    }
+	  });
+	});
 
 /***/ },
 /* 2 */
