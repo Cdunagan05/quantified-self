@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Exercise = __webpack_require__(1);
-	var Food = __webpack_require__(15);
+	__webpack_require__(15);
 
 /***/ },
 /* 1 */
@@ -2586,6 +2586,23 @@
 	  var allFoods = document.getElementById("all-foods-table");
 	  var alertBox = document.getElementById("alert-message");
 	  var holdFoods = document.getElementById("hold-foods-table");
+	  var input = document.getElementById("myInput");
+
+	  input.addEventListener('keyup', function () {
+	    var tr = holdFoods.getElementsByTagName("tr");
+	    var filter = input.value.toUpperCase();
+
+	    for (i = 0; i < tr.length; i++) {
+	      td = tr[i].getElementsByTagName("td")[0];
+	      if (td) {
+	        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	          tr[i].style.distplay = "";
+	        } else {
+	          tr[i].style.display = "none";
+	        }
+	      }
+	    }
+	  });
 
 	  foodSubmit.addEventListener('click', function () {
 	    var food = foodName.value;
