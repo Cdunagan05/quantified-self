@@ -2608,10 +2608,10 @@
 	    newRow.setAttribute("id", "food-row");
 	    var nameCell = document.createElement('td');
 	    nameCell.innerText = food;
-	    nameCell.setAttribute("id", "food-name");
+	    nameCell.setAttribute("id", foodCount + 1);
 	    var calorieCell = document.createElement('td');
 	    calorieCell.innerText = calories;
-	    calorieCell.setAttribute("id", "food-calories");
+	    calorieCell.setAttribute("id", foodCount + 1);
 	    var deleteCell = document.createElement('td');
 	    deleteCell.setAttribute("id", foodCount + "-" + food);
 	    deleteCell.innerHTML = "<button class='btn btn-default delete-food-button'>Delete</button>";
@@ -2664,15 +2664,18 @@
 	  var $td = $("td");
 
 	  $td.on({
-	    // "keypress" : function(e) {
-	    //   if (e.which !== 13) { // On Return key - "save" cell
-	    //     e.preventDefault();
-	    //     $(this).prop("contenteditable", true);
-	    //   }
-	    // },
 	    "dblclick": function () {
+	      let oldText = this.textContent;
 	      $td.not(this).prop("contenteditable", false);
 	      $(this).prop("contenteditable", true);
+	    },
+	    "blur": function () {
+	      var newText = this.textContent;
+	      var storage = JSON.parse(localStorage["hold-foods-table"]);
+	      var foodToEdit = storage[this.id];
+	      foodToEdit["food"] = newText;
+	      var newStorage = JSON.stringify(storage);
+	      localStorage.setItem("hold-foods-table", newStorage);
 	    }
 	  });
 	});
