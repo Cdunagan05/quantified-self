@@ -47,6 +47,20 @@
 	var Exercise = __webpack_require__(1);
 	var Food = __webpack_require__(15);
 
+	$(document).ready(function () {
+
+	  var holdFoods = document.getElementById("foods-table");
+	  var foods = JSON.parse(localStorage.getItem('hold-foods-table'));
+
+	  function setFood() {
+	    for (var i = 1; i <= Object.keys(foods).length; i++) {
+	      holdFoods.innerHTML += "<tr><td>" + foods[i].food + "</td><td>" + foods[i].calories + "</td></tr>";
+	    }
+	  };
+
+	  setFood();
+	});
+
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
