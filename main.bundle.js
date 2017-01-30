@@ -64,6 +64,23 @@
 	  var allExercises = document.getElementById('all-exercises-table');
 	  var alertBox = document.getElementById('alert-message');
 	  var holdExercises = document.getElementById('hold-exercises-table');
+	  var inputExercise = document.getElementById("myInput");
+
+	  inputExercise.addEventListener('keyup', function () {
+	    var filter = inputExercise.value.toUpperCase();
+	    var tr = holdExercises.getElementsByTagName("tr");
+
+	    for (i = 0; i < tr.length; i++) {
+	      td = tr[i].getElementsByTagName("td")[0];
+	      if (td) {
+	        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	          tr[i].style.display = "";
+	        } else {
+	          tr[i].style.display = "none";
+	        }
+	      }
+	    }
+	  });
 
 	  exerciseSubmit.addEventListener('click', function () {
 	    var exercise = exerciseName.value;
@@ -2586,10 +2603,10 @@
 	  var allFoods = document.getElementById("all-foods-table");
 	  var alertBox = document.getElementById("alert-message");
 	  var holdFoods = document.getElementById("hold-foods-table");
-	  var input = document.getElementById("myInput");
+	  var inputFood = document.getElementById("myInput");
 
-	  input.addEventListener('keyup', function () {
-	    var filter = input.value.toUpperCase();
+	  inputFood.addEventListener('keyup', function () {
+	    var filter = inputFood.value.toUpperCase();
 	    var tr = holdFoods.getElementsByTagName("tr");
 
 	    for (i = 0; i < tr.length; i++) {
