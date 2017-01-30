@@ -153,8 +153,6 @@
 	        exerciseToEdit["exercise"] = newText;
 	      } else if (this.classList[0] === "exercise-calorie-cell") {
 	        exerciseToEdit["calories"] = newText;
-	      } else {
-	        flash("An error occurred. Please try again.");
 	      };
 	      var newStorage = JSON.stringify(storage);
 	      localStorage.setItem("hold-exercises-table", newStorage);
@@ -2706,8 +2704,6 @@
 	        foodToEdit["food"] = newText;
 	      } else if (this.classList[0] === "food-calorie-cell") {
 	        foodToEdit["calories"] = newText;
-	      } else {
-	        flash("An error occurred. Please try again.");
 	      };
 	      var newStorage = JSON.stringify(storage);
 	      localStorage.setItem("hold-foods-table", newStorage);
