@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Exercise = __webpack_require__(1);
-	__webpack_require__(15);
+	var Food = __webpack_require__(15);
 
 	$(document).ready(function () {
 
