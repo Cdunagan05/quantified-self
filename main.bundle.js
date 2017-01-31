@@ -67,7 +67,7 @@
 
 	    today = mm + '/' + dd + '/' + yyyy;
 	    // document.write(today);
-	    dateBlock.innerHTML = "<h2>" + today + "</h2>";
+	    dateBlock.innerHTML = "<h2><p id='previous-day'> ⬅️ </p>" + today + "<p id='next-day'> ➡️ </p></h2>";
 	  };
 
 	  displayDate();
