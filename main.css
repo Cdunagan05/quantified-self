@@ -1,3 +1,13 @@
+td, th { padding:5px; border: 1px solid #ddd; }
+td[contenteditable=true] { outline: 2px solid #0af; }
+
+
+.all-foods {
+}
+
+.all-foods-form {
+}
+
 .hold-foods {
 
 }
