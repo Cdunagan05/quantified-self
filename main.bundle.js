@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Exercise = __webpack_require__(1);
-	var Food = __webpack_require__(15);
+	__webpack_require__(15);
 
 	$(document).ready(function () {
 
@@ -76,7 +76,6 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(2);
-
 	var exerciseCount = 0;
 
 	$(document).ready(function () {
@@ -88,6 +87,23 @@
 	  var allExercises = document.getElementById('all-exercises-table');
 	  var alertBox = document.getElementById('alert-message');
 	  var holdExercises = document.getElementById('hold-exercises-table');
+	  var inputExercise = document.getElementById("myInput");
+
+	  inputExercise.addEventListener('keyup', function () {
+	    var filter = inputExercise.value.toUpperCase();
+	    var tr = holdExercises.getElementsByTagName("tr");
+
+	    for (i = 0; i < tr.length; i++) {
+	      td = tr[i].getElementsByTagName("td")[0];
+	      if (td) {
+	        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	          tr[i].style.display = "";
+	        } else {
+	          tr[i].style.display = "none";
+	        }
+	      }
+	    }
+	  });
 
 	  exerciseSubmit.addEventListener('click', function () {
 	    var exercise = exerciseName.value;
@@ -107,8 +123,12 @@
 	    newRow.setAttribute("id", exerciseCount + "-" + exercise);
 	    var nameCell = document.createElement('td');
 	    nameCell.innerText = exercise;
+	    nameCell.setAttribute("id", exerciseCount + 1);
+	    nameCell.setAttribute("class", "exercise-name-cell");
 	    var calorieCell = document.createElement('td');
 	    calorieCell.innerText = calories;
+	    calorieCell.setAttribute("id", exerciseCount + 1);
+	    calorieCell.setAttribute("class", "exercise-calorie-cell");
 	    var deleteCell = document.createElement('td');
 	    deleteCell.setAttribute("id", exerciseCount + "-" + exercise);
 	    deleteCell.innerHTML = "<button class='btn btn-default delete-exercise-button'>Delete</button>";
@@ -155,6 +175,30 @@
 	  exercisesJSON = JSON.stringify(currentExercises);
 	  localStorage.setItem('hold-exercises-table', exercisesJSON);
 	}
+
+	$(function () {
+
+	  var $td = $("td");
+
+	  $td.on({
+	    "dblclick": function () {
+	      $td.not(this).prop("contenteditable", false);
+	      $(this).prop("contenteditable", true);
+	    },
+	    "blur": function () {
+	      var newText = this.textContent;
+	      var storage = JSON.parse(localStorage["hold-exercises-table"]);
+	      var exerciseToEdit = storage[this.id];
+	      if (this.classList[0] === "exercise-name-cell") {
+	        exerciseToEdit["exercise"] = newText;
+	      } else if (this.classList[0] === "exercise-calorie-cell") {
+	        exerciseToEdit["calories"] = newText;
+	      };
+	      var newStorage = JSON.stringify(storage);
+	      localStorage.setItem("hold-exercises-table", newStorage);
+	    }
+	  });
+	});
 
 /***/ },
 /* 2 */
@@ -2610,6 +2654,23 @@
 	  var allFoods = document.getElementById("all-foods-table");
 	  var alertBox = document.getElementById("alert-message");
 	  var holdFoods = document.getElementById("hold-foods-table");
+	  var inputFood = document.getElementById("myInput");
+
+	  inputFood.addEventListener('keyup', function () {
+	    var filter = inputFood.value.toUpperCase();
+	    var tr = holdFoods.getElementsByTagName("tr");
+
+	    for (i = 0; i < tr.length; i++) {
+	      td = tr[i].getElementsByTagName("td")[0];
+	      if (td) {
+	        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	          tr[i].style.display = "";
+	        } else {
+	          tr[i].style.display = "none";
+	        }
+	      }
+	    }
+	  });
 
 	  foodSubmit.addEventListener('click', function () {
 	    var food = foodName.value;
@@ -2626,11 +2687,15 @@
 
 	  function submitFood(food, calories) {
 	    var newRow = document.createElement("tr");
-	    newRow.setAttribute("id", foodCount + "-" + food);
+	    newRow.setAttribute("id", "food-row");
 	    var nameCell = document.createElement('td');
 	    nameCell.innerText = food;
+	    nameCell.setAttribute("id", foodCount + 1);
+	    nameCell.setAttribute("class", "food-name-cell");
 	    var calorieCell = document.createElement('td');
 	    calorieCell.innerText = calories;
+	    calorieCell.setAttribute("id", foodCount + 1);
+	    calorieCell.setAttribute("class", "food-calorie-cell");
 	    var deleteCell = document.createElement('td');
 	    deleteCell.setAttribute("id", foodCount + "-" + food);
 	    deleteCell.innerHTML = "<button class='btn btn-default delete-food-button'>Delete</button>";
@@ -2665,7 +2730,7 @@
 	  $("#alert-message").remove();
 	  $('.alert').prepend('<div id="alert-message">' + message + '</div>');
 	  $('#alert-message').delay(1250).fadeOut();
-	}
+	};
 
 	function storeFood(food, calories, counter) {
 	  var foodsJSON = localStorage.getItem('hold-foods-table');
@@ -2676,7 +2741,31 @@
 	  currentFoods[counter] = { food: food, calories: calories };
 	  foodsJSON = JSON.stringify(currentFoods);
 	  localStorage.setItem('hold-foods-table', foodsJSON);
-	}
+	};
+
+	$(function () {
+
+	  var $td = $("td");
+
+	  $td.on({
+	    "dblclick": function () {
+	      $td.not(this).prop("contenteditable", false);
+	      $(this).prop("contenteditable", true);
+	    },
+	    "blur": function () {
+	      var newText = this.textContent;
+	      var storage = JSON.parse(localStorage["hold-foods-table"]);
+	      var foodToEdit = storage[this.id];
+	      if (this.classList[0] === "food-name-cell") {
+	        foodToEdit["food"] = newText;
+	      } else if (this.classList[0] === "food-calorie-cell") {
+	        foodToEdit["calories"] = newText;
+	      };
+	      var newStorage = JSON.stringify(storage);
+	      localStorage.setItem("hold-foods-table", newStorage);
+	    }
+	  });
+	});
 
 /***/ }
 /******/ ]);
