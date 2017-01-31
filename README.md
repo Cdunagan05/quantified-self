@@ -57,5 +57,5 @@ Note: You will need Selenium + A Driver + Firefox (or other browser with appropr
  
 ## License 
 
- - [MIT License](https://github.com/Cdunagan05/quantified-self/LICENSE.txt)
+ - [MIT License](https://github.com/Cdunagan05/quantified-self/blob/master/LICENSE.txt)
  
