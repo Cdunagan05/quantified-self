@@ -56,28 +56,20 @@
 	    var dateBlock = document.getElementById("date-holder");
 	    var today = new Date();
 	    today.setDate(today.getDate());
-	    // var dd = today.getDate();
-	    // var mm = today.getMonth()+1; //January is 0!
-	    // var yyyy = today.getFullYear();
-	    //
-	    // if(dd<10) {
-	    //     dd='0'+dd
-	    // }
-	    //
-	    // if(mm<10) {
-	    //     mm='0'+mm
-	    // }
-	    //
-	    // today = mm+'/'+dd+'/'+yyyy;
-	    dateBlock.innerHTML = "<h2><p id='previous-day'> ⬅️ </p>" + today.toLocaleDateString() + "<p id='next-day'> ➡️ </p></h2>";
+	    dateBlock.innerHTML = today.toLocaleDateString();
 	  };
 
 	  function nextDate() {
 	    var date = new Date();
 
-	    $("#date-holder").on("click", function (e) {
+	    $("#next-day").on("click", function (e) {
 	      date.setDate(date.getDate() + 1);
-	      document.getElementById('date-holder').innerHTML = "<h2><p id='previous-day'> ⬅️ </p>" + date.toLocaleDateString() + "<p id='next-day'> ➡️ </p></h2>";
+	      document.getElementById('date-holder').innerHTML = date.toLocaleDateString();
+	    });
+
+	    $("#previous-day").on("click", function (e) {
+	      date.setDate(date.getDate() - 1);
+	      document.getElementById('date-holder').innerHTML = date.toLocaleDateString();
 	    });
 	  };
 
@@ -98,10 +90,9 @@
 
 	  displayDate();
 	  nextDate();
+	  setFood();
+	  setExercises();
 	});
-
-	setFood();
-	setExercises();
 
 /***/ },
 /* 1 */
