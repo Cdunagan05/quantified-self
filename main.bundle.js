@@ -50,7 +50,7 @@
 	$(document).ready(function () {
 
 	  var holdFoods = document.getElementById("hold-foods-table");
-	  var holdExercises = document.getElementById("exercises-table");
+	  var holdExercises = document.getElementById("hold-exercises-table");
 	  var exercises = JSON.parse(localStorage.getItem("hold-exercises-table"));
 	  var foods = JSON.parse(localStorage.getItem('hold-foods-table'));
 	  var addBreakfast = document.getElementById("add-breakfast");
@@ -151,7 +151,7 @@
 	  var allExercises = document.getElementById('all-exercises-table');
 	  var alertBox = document.getElementById('alert-message');
 	  var holdExercises = document.getElementById('hold-exercises-table');
-	  var inputExercise = document.getElementById("myInput");
+	  var inputExercise = document.getElementById("exercise-search");
 
 	  inputExercise.addEventListener('keyup', function () {
 	    var filter = inputExercise.value.toUpperCase();
