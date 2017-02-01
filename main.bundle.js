@@ -75,7 +75,7 @@
 
 	  function setFood() {
 	    for (var i = 1; i <= Object.keys(foods).length; i++) {
-	      holdFoods.innerHTML += "<tr><td><input type='checkbox'>" + " " + foods[i].food + "</td><td>" + foods[i].calories + "</td></tr>";
+	      holdFoods.innerHTML += "<tr><td><input type='checkbox' id='foods-checkbox'/>" + " " + foods[i].food + "</td><td>" + foods[i].calories + "</td></tr>";
 	    }
 	  };
 
@@ -84,7 +84,7 @@
 
 	  function setExercises() {
 	    for (var i = 1; i <= Object.keys(exercises).length; i++) {
-	      holdExercises.innerHTML += "<tr><td><input type='checkbox'>" + " " + exercises[i].exercise + "</td><td>" + exercises[i].calories + "</td></tr>";
+	      holdExercises.innerHTML += "<tr><td><input type='checkbox' id='exercises-checkbox'/>" + " " + exercises[i].exercise + "</td><td>" + exercises[i].calories + "</td></tr>";
 	    }
 	  };
 
