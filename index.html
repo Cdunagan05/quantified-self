@@ -12,10 +12,16 @@
   <nav class="navbar navbar-light bg-faded">
   <a class="navbar-brand" href="#">Navbar</a>
   </nav>
+  Food: <input id="name-field"> Calories: <input id="calorie-field"> <input type="submit" class="btn btn-success" id="food-submit" value="Add Food">
+  <div class="alert"></div>
+  <input type="text" id="myInput" placeholder="Search for food...">
+
   <h3>Meal Table!</h3>
-  <table class="table col-md-3", id="foods-table">
+  <table class="table col-md-3", id="all-foods-table">
     <th>Name</th>
     <th>Calories</th>
+    <table class="table col-md-3", id="index-hold-foods-table">
+    </table>
   </table>
   <button id="add-breakfast">Add To Breakfast</button>
   <button id="add-lunch">Add To Lunch</button>
@@ -23,10 +29,13 @@
   <button id="add-snack">Add To Snack</button>
 
   <h3>Exercises Table!</h3>
-  <table class="table col-md-3", id="exercises-table">
+  <table class="table col-md-3", id="all-exercises-table">
     <th>Exercise</th>
     <th>Calories</th>
+    <table class="table col-md-3", id="index-hold-exercises-table">
+    <table>
   </table>
+  
   <button id="add-exercise">Add Exercise</button>
 
   <br/>
