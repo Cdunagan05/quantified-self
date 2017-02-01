@@ -66,32 +66,35 @@
 
 	  $(addBreakfast).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
-	    setMealFoods(selectedFoods, holdBreakfast);
+	    setTableItems(selectedFoods, holdBreakfast);
 	  });
-
-	  function setMealFoods(selectedFoods, specificTable) {
-	    for (var i = 0; i <= Object.keys(selectedFoods).length; i++) {
-	      var specificRow = selectedFoods[i];
-	      debugger;
-	      specificTable.innerHTML += specificRow.innerHTML;
-	    }
-	  };
 
 	  $(addLunch).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent();
+	    setTableItems(selectedFoods, holdLunch);
 	  });
 
 	  $(addDinner).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent();
+	    setTableItems(selectedFoods, holdDinner);
 	  });
 
 	  $(addSnacks).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent();
+	    setTableItems(selectedFoods, holdSnacks);
 	  });
 
 	  $(addExercises).on("click", function (e) {
 	    var selectedExercises = $('input[type=checkbox]:checked').parent();
+	    setTableItems(selectedExercises, holdExercises);
 	  });
+
+	  function setTableItems(selectedItems, specificTable) {
+	    for (var i = 0; i <= Object.keys(selectedItems).length; i++) {
+	      var specificRow = selectedItems[i];
+	      specificTable.innerHTML += specificRow.innerHTML;
+	    }
+	  };
 
 	  function displayDate() {
 	    var dateBlock = document.getElementById("date-holder");
