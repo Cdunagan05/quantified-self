@@ -63,6 +63,7 @@
 	  var holdDinner = document.getElementById("dinner-table");
 	  var holdSnacks = document.getElementById("snack-table");
 	  var holdCompletedExercises = document.getElementById("completed-exercise-table");
+	  var dateBlock = document.getElementById("date-holder");
 
 	  $(addBreakfast).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
@@ -96,11 +97,26 @@
 	    }
 	  };
 
+	  function storeDay(date) {
+	    var diaryJSON = localStorage.getItem('diary');
+	    if (diaryJSON === null) {
+	      diaryJSON = '{}';
+	    }
+	    var allDays = JSON.parse(diaryJSON);
+	    allDays[date] = { breakfast: holdBreakfast,
+	      lunch: holdLunch,
+	      dinner: holdDinner,
+	      snacks: holdSnacks,
+	      exercises: holdCompletedExercises };
+	    diaryJSON = JSON.stringify(allDays);
+	    localStorage.setItem('diary', diaryJSON);
+	  }
+
 	  function displayDate() {
-	    var dateBlock = document.getElementById("date-holder");
 	    var today = new Date();
 	    today.setDate(today.getDate());
 	    dateBlock.innerHTML = today.toLocaleDateString();
+	    // storeDay(dateBlock.innerHTML);
 	  };
 
 	  function nextDate() {
