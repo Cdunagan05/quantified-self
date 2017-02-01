@@ -12,29 +12,34 @@
   <nav class="navbar navbar-light bg-faded">
   <a class="navbar-brand" href="#">Navbar</a>
   </nav>
-  <h3>Meal Table!</h3>
-  <table class="table col-md-3", id="foods-table">
+  <input type="text" id="food-search-box" placeholder="Search for food...">
+
+  <h3>Foods</h3>
+  <a href="foods.html" class="btn btn-default" id="create-new-foods-button">Create New Food</a>
+  <table class="table col-md-3", id="index-hold-foods-table">
     <th>Name</th>
     <th>Calories</th>
   </table>
-  <button id="add-breakfast">Add To Breakfast</button>
-  <button id="add-lunch">Add To Lunch</button>
-  <button id="add-dinner">Add To Dinner</button>
-  <button id="add-snack">Add To Snack</button>
+  <button id="add-breakfast" class="btn btn-default">Add To Breakfast</button>
+  <button id="add-lunch" class="btn btn-default">Add To Lunch</button>
+  <button id="add-dinner" class="btn btn-default">Add To Dinner</button>
+  <button id="add-snack" class="btn btn-default">Add To Snack</button>
 
-  <h3>Exercises Table!</h3>
-  <table class="table col-md-3", id="exercises-table">
+  <h3>Exercises</h3>
+  <a href="exercises.html" class="btn btn-default" id="create-new-exercises-button">Create New Exercise</a>
+  <table class="table col-md-3", id="index-hold-exercises-table">
     <th>Exercise</th>
     <th>Calories</th>
   </table>
-  <button id="add-exercise">Add Exercise</button>
+  
+  <button id="add-exercise" class="btn btn-default">Add Exercise</button>
 
   <br/>
   <br/>
   <h1>Diary for:</h1>
   <h2 id='previous-day'> ⬅️ </h2><h2 id="date-holder"></h2><h2 id='next-day'> ➡️ </h2>
   
-
+  <h3>Meals</h3>
   <h3>Breakfast Table!</h3>
   <table class="table col-md-3", id="breakfast-table">
     <th>Food</th>
@@ -67,7 +72,7 @@
   <br/>
   <br/>
 
-  <h3>Completed Exercise Table!</h3>
+  <h3>Exercise</h3>
   <table class="table col-md-3", id="completed-exercise-table">
     <th>Exercise</th>
     <th>Calories</th>

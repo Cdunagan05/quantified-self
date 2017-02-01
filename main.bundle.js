@@ -49,7 +49,7 @@
 
 	$(document).ready(function () {
 
-	  var holdFoods = document.getElementById("foods-table");
+	  var holdFoods = document.getElementById("hold-foods-table");
 	  var holdExercises = document.getElementById("exercises-table");
 	  var exercises = JSON.parse(localStorage.getItem("hold-exercises-table"));
 	  var foods = JSON.parse(localStorage.getItem('hold-foods-table'));
@@ -62,7 +62,7 @@
 	  var holdLunch = document.getElementById("lunch-table");
 	  var holdDinner = document.getElementById("dinner-table");
 	  var holdSnacks = document.getElementById("snack-table");
-	  var holdExercises = document.getElementById("exercise-table");
+	  var holdCompletedExercises = document.getElementById("completed-exercise-table");
 
 	  $(addBreakfast).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
@@ -70,23 +70,23 @@
 	  });
 
 	  $(addLunch).on("click", function (e) {
-	    var selectedFoods = $('input[type=checkbox]:checked').parent();
+	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedFoods, holdLunch);
 	  });
 
 	  $(addDinner).on("click", function (e) {
-	    var selectedFoods = $('input[type=checkbox]:checked').parent();
+	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedFoods, holdDinner);
 	  });
 
 	  $(addSnacks).on("click", function (e) {
-	    var selectedFoods = $('input[type=checkbox]:checked').parent();
+	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedFoods, holdSnacks);
 	  });
 
 	  $(addExercises).on("click", function (e) {
-	    var selectedExercises = $('input[type=checkbox]:checked').parent();
-	    setTableItems(selectedExercises, holdExercises);
+	    var selectedExercises = $('input[type=checkbox]:checked').parent().parent();
+	    setTableItems(selectedExercises, holdCompletedExercises);
 	  });
 
 	  function setTableItems(selectedItems, specificTable) {
