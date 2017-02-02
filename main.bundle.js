@@ -113,7 +113,7 @@
 	    };
 	    debugger;
 	    var placeForCalories = document.getElementById('total-breakfast-cals');
-	    placeForCalories.innerHTML = "Calorie Counter: " + total;
+	    placeForCalories.innerHTML = "CALORIE COUNTER: " + total;
 	  }
 
 	  var storeDay = function (date) {
