@@ -68,6 +68,7 @@
 	  $(addBreakfast).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedFoods, holdBreakfast);
+	    calorieCounter();
 	  });
 
 	  $(addLunch).on("click", function (e) {
@@ -96,9 +97,24 @@
 	      var specificRow = selectedItems[i];
 	      specificTable.innerHTML += specificRow.innerHTML;
 	      var dateBlock = document.getElementById("date-holder");
+	      calorieCounter();
 	      storeDay(dateBlock.innerHTML);
 	    };
 	  };
+
+	  function calorieCounter() {
+	    var calCells = document.querySelectorAll("#breakfast-table .f-count");
+
+	    var total = 0;
+
+	    for (var i = 0; i < calCells.length; i++) {
+	      var thisCount = calCells[i].innerHTML;
+	      total += parseInt(thisCount);
+	    };
+	    debugger;
+	    var placeForCalories = document.getElementById('total-breakfast-cals');
+	    placeForCalories.innerHTML = "Calorie Counter: " + total;
+	  }
 
 	  var storeDay = function (date) {
 	    var diaryJSON = localStorage.getItem('diary');
@@ -107,7 +123,7 @@
 	    }
 	    var allDays = JSON.parse(diaryJSON);
 
-	    var breakfastArray = $('#breakfast-table tr').slice(1).map(function (index, row) {
+	    var breakfastArray = $('breakfast-table tr').slice(1).map(function (index, row) {
 	      var foodName = row.cells[0].textContent;
 	      var calories = row.cells[1].textContent;
 	      return { name: foodName, calories: calories };
@@ -171,13 +187,13 @@
 
 	  function setFood() {
 	    for (var i = 1; i <= Object.keys(foods).length; i++) {
-	      holdFoods.innerHTML += "<tr><td><input type='checkbox' id='foods-checkbox'/>" + " " + foods[i].food + "</td><td>" + foods[i].calories + "</td></tr>";
+	      holdFoods.innerHTML += "<tr><td><input type='checkbox' id='foods-checkbox'/>" + " " + foods[i].food + "</td><td class='f-count'>" + foods[i].calories + "</td></tr>";
 	    }
 	  };
 
 	  function setExercises() {
 	    for (var i = 1; i <= Object.keys(exercises).length; i++) {
-	      holdExercises.innerHTML += "<tr><td><input type='checkbox' id='exercises-checkbox'/>" + " " + exercises[i].exercise + "</td><td>" + exercises[i].calories + "</td></tr>";
+	      holdExercises.innerHTML += "<tr><td><input type='checkbox' id='exercises-checkbox'/>" + " " + exercises[i].exercise + "</td><td class='ex-count'>" + exercises[i].calories + "</td></tr>";
 	    }
 	  };
 
