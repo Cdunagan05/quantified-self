@@ -88,35 +88,69 @@
 	  $(addExercises).on("click", function (e) {
 	    var selectedExercises = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedExercises, holdCompletedExercises);
+	    storeDay(dateBlock.innerHTML);
 	  });
 
 	  function setTableItems(selectedItems, specificTable) {
 	    for (var i = 0; i <= Object.keys(selectedItems).length; i++) {
 	      var specificRow = selectedItems[i];
 	      specificTable.innerHTML += specificRow.innerHTML;
-	    }
+	      var dateBlock = document.getElementById("date-holder");
+	      storeDay(dateBlock.innerHTML);
+	    };
 	  };
 
-	  function storeDay(date) {
+	  var storeDay = function (date) {
 	    var diaryJSON = localStorage.getItem('diary');
 	    if (diaryJSON === null) {
 	      diaryJSON = '{}';
 	    }
 	    var allDays = JSON.parse(diaryJSON);
-	    allDays[date] = { breakfast: holdBreakfast,
-	      lunch: holdLunch,
-	      dinner: holdDinner,
-	      snacks: holdSnacks,
-	      exercises: holdCompletedExercises };
+
+	    var breakfastArray = $('#breakfast-table tr').slice(1).map(function (index, row) {
+	      var foodName = row.cells[0].textContent;
+	      var calories = row.cells[1].textContent;
+	      return { name: foodName, calories: calories };
+	    });
+
+	    var lunchArray = $('#lunch-table tr').slice(1).map(function (index, row) {
+	      var foodName = row.cells[0].textContent;
+	      var calories = row.cells[1].textContent;
+	      return { name: foodName, calories: calories };
+	    });
+
+	    var dinnerArray = $('#dinner-table tr').slice(1).map(function (index, row) {
+	      var foodName = row.cells[0].textContent;
+	      var calories = row.cells[1].textContent;
+	      return { name: foodName, calories: calories };
+	    });
+
+	    var snacksArray = $('#snack-table tr').slice(1).map(function (index, row) {
+	      var foodName = row.cells[0].textContent;
+	      var calories = row.cells[1].textContent;
+	      return { name: foodName, calories: calories };
+	    });
+
+	    var exerciseArray = $('#exercises-table tr').slice(1).map(function (index, row) {
+	      var exerciseName = row.cells[0].textContent;
+	      var calories = row.cells[1].textContent;
+	      return { name: exerciseName, calories: calories };
+	    });
+
+	    allDays[date]["breakfast"] = JSON.stringify(breakfastArray[0]);
+	    allDays[date]["lunch"] = JSON.stringify(lunchArray[0]);
+	    allDays[date]["dinner"] = JSON.stringify(dinnerArray[0]);
+	    allDays[date]["snacks"] = JSON.stringify(snacksArray[0]);
+	    allDays[date]["exercises"] = JSON.stringify(exerciseArray[0]);
 	    diaryJSON = JSON.stringify(allDays);
 	    localStorage.setItem('diary', diaryJSON);
-	  }
+	  };
 
 	  function displayDate() {
 	    var today = new Date();
 	    today.setDate(today.getDate());
 	    dateBlock.innerHTML = today.toLocaleDateString();
-	    // storeDay(dateBlock.innerHTML);
+	    storeDay(dateBlock.innerHTML);
 	  };
 
 	  function nextDate() {
@@ -125,11 +159,13 @@
 	    $("#next-day").on("click", function (e) {
 	      date.setDate(date.getDate() + 1);
 	      document.getElementById('date-holder').innerHTML = date.toLocaleDateString();
+	      storeDay(dateBlock.innerHTML);
 	    });
 
 	    $("#previous-day").on("click", function (e) {
 	      date.setDate(date.getDate() - 1);
 	      document.getElementById('date-holder').innerHTML = date.toLocaleDateString();
+	      storeDay(dateBlock.innerHTML);
 	    });
 	  };
 
