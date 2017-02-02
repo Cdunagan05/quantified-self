@@ -111,7 +111,6 @@
 	      var thisCount = calCells[i].innerHTML;
 	      total += parseInt(thisCount);
 	    };
-	    debugger;
 	    var placeForCalories = document.getElementById('total-breakfast-cals');
 	    placeForCalories.innerHTML = "CALORIE COUNTER: " + total;
 	  }
@@ -199,8 +198,6 @@
 	  function displayDiary(date) {
 	    var diary = JSON.parse(localStorage.getItem('diary'));
 	    var diaryForToday = diary[date];
-	    // displayBreakfast(diaryForToday);
-	    debugger;
 	  }
 
 	  function displayBreakfast(diary) {
