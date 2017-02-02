@@ -4,14 +4,88 @@
   <meta charset="utf-8">
   <title>Quantified Self - Diary</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="./main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </head>
 <body>
   <nav class="navbar navbar-light bg-faded">
-  <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="/">Quantified Self</a>
+    <a class="navbar-brand" href="foods.html">Foods</a>
+    <a class="navbar-brand" href="exercises.html">Exercises</a>
   </nav>
-  <h3>Hello, World!</h3>
-  <script src="main.bundle.js"></script>
+
+
+  <h3>Foods</h3>
+  <input type="text" id="myInput" placeholder="Search for food...">
+  <a href="foods.html" class="btn btn-default" id="create-new-foods-button">Create New Food</a>
+  <table class="table col-md-3", id="hold-foods-table">
+    <th>Name</th>
+    <th>Calories</th>
+  </table>
+  <button id="add-breakfast" class="btn btn-default">Add To Breakfast</button>
+  <button id="add-lunch" class="btn btn-default">Add To Lunch</button>
+  <button id="add-dinner" class="btn btn-default">Add To Dinner</button>
+  <button id="add-snack" class="btn btn-default">Add To Snack</button>
+
+  <h3>Exercises</h3>
+  <input type="text" id="exercise-search" placeholder="Search for exercise...">
+  <a href="exercises.html" class="btn btn-default" id="create-new-exercises-button">Create New Exercise</a>
+  <table class="table col-md-3", id="hold-exercises-table">
+    <th>Exercise</th>
+    <th>Calories</th>
+  </table>
+
+  <button id="add-exercise" class="btn btn-default">Add Exercise</button>
+
+  <br/>
+  <br/>
+  <h1>Diary for:</h1>
+  <h2 id='previous-day'> ⬅️ </h2><h2 id="date-holder"></h2><h2 id='next-day'> ➡️ </h2>
+
+  <h3>Meals</h3>
+  <h3>Breakfast Table!</h3>
+  <table class="table col-md-3", id="breakfast-table">
+    <th>Food</th>
+    <th>Calories</th>
+  </table>
+  <div id='total-breakfast-cals'></div>
+  <br/>
+  <br/>
+
+  <h3>Lunch Table!</h3>
+  <table class="table col-md-3", id="lunch-table">
+    <th>Food</th>
+    <th>Calories</th>
+  </table>
+  <br/>
+  <br/>
+
+  <h3>Dinner Table!</h3>
+  <table class="table col-md-3", id="dinner-table">
+    <th>Food</th>
+    <th>Calories</th>
+  </table>
+  <br/>
+  <br/>
+
+  <h3>Snacks Table!</h3>
+  <table class="table col-md-3", id="snack-table">
+    <th>Food</th>
+    <th>Calories</th>
+  </table>
+  <br/>
+  <br/>
+
+  <h3>Exercise</h3>
+  <table class="table col-md-3", id="completed-exercise-table">
+    <th>Exercise</th>
+    <th>Calories</th>
+  </table>
+  <br/>
+  <br/>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
+<script src="main.bundle.js"></script>
 </html>
