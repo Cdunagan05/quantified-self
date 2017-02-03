@@ -68,28 +68,32 @@
 	  $(addBreakfast).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedFoods, holdBreakfast);
-	    calorieCounter();
+	    BreakfastCalorieCounter();
 	  });
 
 	  $(addLunch).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedFoods, holdLunch);
+	    LunchCalorieCounter();
 	  });
 
 	  $(addDinner).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedFoods, holdDinner);
+	    DinnerCalorieCounter();
 	  });
 
 	  $(addSnacks).on("click", function (e) {
 	    var selectedFoods = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedFoods, holdSnacks);
+	    SnackCalorieCounter();
 	  });
 
 	  $(addExercises).on("click", function (e) {
 	    var selectedExercises = $('input[type=checkbox]:checked').parent().parent();
 	    setTableItems(selectedExercises, holdCompletedExercises);
-	    storeDay(dateBlock.innerHTML);
+	    ExerciseCalorieCounter();
+	    // storeDay(dateBlock.innerHTML);
 	  });
 
 	  function setTableItems(selectedItems, specificTable) {
@@ -97,22 +101,89 @@
 	      var specificRow = selectedItems[i];
 	      specificTable.innerHTML += specificRow.innerHTML;
 	      var dateBlock = document.getElementById("date-holder");
-	      calorieCounter();
+	      BreakfastCalorieCounter();
+	      LunchCalorieCounter();
+	      DinnerCalorieCounter();
+	      SnackCalorieCounter();
+	      ExerciseCalorieCounter();
 	      storeDay(dateBlock.innerHTML);
 	    };
 	  };
 
-	  function calorieCounter() {
-	    var calCells = document.querySelectorAll("#breakfast-table .f-count");
+	  function BreakfastCalorieCounter() {
+	    var BreakCalCells = document.querySelectorAll("#breakfast-table .f-count");
 
 	    var total = 0;
 
-	    for (var i = 0; i < calCells.length; i++) {
-	      var thisCount = calCells[i].innerHTML;
+	    for (var i = 0; i < BreakCalCells.length; i++) {
+	      var thisCount = BreakCalCells[i].innerHTML;
 	      total += parseInt(thisCount);
 	    };
 	    var placeForCalories = document.getElementById('total-breakfast-cals');
 	    placeForCalories.innerHTML = "CALORIE COUNTER: " + total;
+	  }
+
+	  function LunchCalorieCounter() {
+	    var LunchCalCells = document.querySelectorAll("#lunch-table .f-count");
+	    var total = 0;
+	    for (var i = 0; i < LunchCalCells.length; i++) {
+	      var thisCount = LunchCalCells[i].innerHTML;
+	      total += parseInt(thisCount);
+	    };
+	    var placeForCalories = document.getElementById('total-lunch-cals');
+	    placeForCalories.innerHTML = "CALORIE COUNTER: " + total;
+	  }
+
+	  function LunchCalorieCounter() {
+	    var LunchCalCells = document.querySelectorAll("#lunch-table .f-count");
+
+	    var total = 0;
+
+	    for (var i = 0; i < LunchCalCells.length; i++) {
+	      var thisCount = LunchCalCells[i].innerHTML;
+	      total += parseInt(thisCount);
+	    };
+	    var placeForCalories = document.getElementById('total-lunch-cals');
+	    placeForCalories.innerHTML = "Calorie Counter: " + total;
+	  }
+
+	  function DinnerCalorieCounter() {
+	    var DinnerCalCells = document.querySelectorAll("#dinner-table .f-count");
+
+	    var total = 0;
+
+	    for (var i = 0; i < DinnerCalCells.length; i++) {
+	      var thisCount = DinnerCalCells[i].innerHTML;
+	      total += parseInt(thisCount);
+	    };
+	    var placeForCalories = document.getElementById('total-dinner-cals');
+	    placeForCalories.innerHTML = "Calorie Counter: " + total;
+	  }
+
+	  function SnackCalorieCounter() {
+	    var SnackCalCells = document.querySelectorAll("#snack-table .f-count");
+
+	    var total = 0;
+
+	    for (var i = 0; i < SnackCalCells.length; i++) {
+	      var thisCount = SnackCalCells[i].innerHTML;
+	      total += parseInt(thisCount);
+	    };
+	    var placeForCalories = document.getElementById('total-snack-cals');
+	    placeForCalories.innerHTML = "Calorie Counter: " + total;
+	  }
+
+	  function ExerciseCalorieCounter() {
+	    var ExerciseCalCells = document.querySelectorAll("#completed-exercise-table .ex-count");
+
+	    var total = 0;
+
+	    for (var i = 0; i < ExerciseCalCells.length; i++) {
+	      var thisCount = ExerciseCalCells[i].innerHTML;
+	      total += parseInt(thisCount);
+	    };
+	    var placeForCalories = document.getElementById('total-exercise-cals');
+	    placeForCalories.innerHTML = "Calories Burned: " + total;
 	  }
 
 	  var storeDay = function (date) {
@@ -152,13 +223,13 @@
 	      return { name: exerciseName, calories: calories };
 	    });
 
-	    allDays[date]["breakfast"] = JSON.stringify(breakfastArray[0]);
-	    allDays[date]["lunch"] = JSON.stringify(lunchArray[0]);
-	    allDays[date]["dinner"] = JSON.stringify(dinnerArray[0]);
-	    allDays[date]["snacks"] = JSON.stringify(snacksArray[0]);
-	    allDays[date]["exercises"] = JSON.stringify(exerciseArray[0]);
-	    diaryJSON = JSON.stringify(allDays);
-	    localStorage.setItem('diary', diaryJSON);
+	    // allDays[date]["breakfast"] = JSON.stringify(breakfastArray[0]);
+	    // allDays[date]["lunch"] = JSON.stringify(lunchArray[0]);
+	    // allDays[date]["dinner"] = JSON.stringify(dinnerArray[0]);
+	    // allDays[date]["snacks"] = JSON.stringify(snacksArray[0]);
+	    // allDays[date]["exercises"] = JSON.stringify(exerciseArray[0]);
+	    // diaryJSON = JSON.stringify(allDays);
+	    // localStorage.setItem('diary', diaryJSON);
 	  };
 
 	  function displayDate() {
